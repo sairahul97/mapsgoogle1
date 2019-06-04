@@ -38,7 +38,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 final FusedLocationProviderClient client= LocationServices.getFusedLocationProviderClient(this);
 
         LocationRequest req = new LocationRequest();
-        req.setInterval(2000); // 2 seconds
+        req.setInterval(10000); // 10 seconds
         req.setFastestInterval(500); //500 milliseconds
         req.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
@@ -75,6 +75,7 @@ final FusedLocationProviderClient client= LocationServices.getFusedLocationProvi
                     Toast.makeText(MapsActivity.this, locationResult.getLastLocation().toString(), Toast.LENGTH_LONG).show();
 // Add a marker in Sydney and move the camera
                     LatLng clocation = new LatLng(locationResult.getLastLocation().getLatitude(), locationResult.getLastLocation().getLongitude());
+                    mMap.clear(); // to clear markers
                     mMap.addMarker(new MarkerOptions().position(clocation).title("Current Location"));
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(clocation, 17.2f));
 
